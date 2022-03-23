@@ -5,7 +5,7 @@ import useApi from '../../helpers/OlxAPI'
 import { doLogin } from "../../helpers/AuthHandler"
 import { ErrorMessage } from "../../components/MainComponents"
 
-export const Page = () => {
+export const SignIn = () => {
     const api = useApi();
 
     const [email, setEmail] = useState('');
@@ -17,6 +17,7 @@ export const Page = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDisabled(true);
+        setError('');
 
         const json = await api.login(email, password);
 
@@ -27,6 +28,7 @@ export const Page = () => {
             window.location.href = '/';
         }
 
+        setDisabled(false)
     }
 
     return (
